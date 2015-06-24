@@ -1,0 +1,2 @@
+#include "NCObject.h"
+
