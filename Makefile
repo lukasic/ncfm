@@ -7,15 +7,14 @@ OBJ=src/FSSymlink.o src/Command.o src/constants.o src/Logger.o src/FSPath.o \
   src/NCPanel.o src/NCPanelContainer.o src/NCRowMenu.o src/NCScreen.o src/NCWidget.o \
   src/main.o src/shared.o src/third_party.o
 
-all: kasicluk
-compile: kasicluk
+all: ncfm
+compile: ncfm
 
-kasicluk: $(OBJ)
-	mkdir -p kasicluk
-	$(LD) $(LDFLAGS) $(OBJ) -o kasicluk/kasicluk
+ncfm: $(OBJ)
+	$(LD) $(LDFLAGS) $(OBJ) -o ncfm
 
-run: kasicluk
-	./kasicluk/kasicluk
+run: ncfm
+	./ncfm
 
 doc: Doxyfile
 	doxygen Doxyfile
@@ -26,14 +25,14 @@ doc: Doxyfile
 clean:
 	rm -rf debug.log
 	rm -rf src/*.o
-	if [ -d kasicluk ]; then rm -rf kasicluk; fi
+	rm -rf ncfm
 	if [ -d doc ]; then rm -rf doc; fi
 
 sudebug: kasicluk/kasicluk
-	sudo gdb ./kasicluk/kasicluk
+	sudo gdb ./ncfm
 
 debug: kasicluk/kasicluk
-	gdb ./kasicluk/kasicluk
+	gdb ./ncfm
 
 FSDir.o: src/FSDir.cpp src/FSPath.h src/constants.h src/FSDir.h src/FSObject.h \
   src/third_party.h src/FSFile.h src/Logger.h
